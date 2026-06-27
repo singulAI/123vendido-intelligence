@@ -51,7 +51,7 @@ export function ModuleListPage({ module }: { module: ModuleConfig }) {
     <div>
       <PageHeader title={module.label} description={module.description}>
         <button
-          onClick={() => navigate({ to: "/app/$module/new", params: { module: module.key } })}
+          onClick={() => navigate({ to: "/app/$module/$id", params: { module: module.key, id: "new" } })}
           className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
         >
           <Plus className="h-4 w-4" /> Novo
