@@ -1,0 +1,31 @@
+name: backend-certification
+on:
+  pull_request:
+  push:
+    paths:
+      - 'backend/**'
+      - 'docs/**'
+      - 'docker-compose*.yml'
+      - 'Makefile'
+      - '.github/workflows/backend-certification.yml'
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - name: Bootstrap
+        run: pip install -e 'backend[dev]'
+      - name: Lint
+        run: python -m compileall -q backend/app
+      - name: Tests
+        run: PYTHONPATH=backend pytest backend/tests --cov=backend/app --cov-report=xml
+      - name: OpenAPI
+        run: PYTHONPATH=backend python backend/scripts/generate_openapi.py
+      - name: SDK Generation
+        run: PYTHONPATH=backend python backend/scripts/generate_sdk.py
+      - name: Architecture Audit
+        run: PYTHONPATH=backend python backend/scripts/audit_architecture.py
+      - name: Docker Build
+        run: docker compose -f docker-compose.dev.yml build
