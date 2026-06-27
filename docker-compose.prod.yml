@@ -1,0 +1,20 @@
+services:
+  api:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    env_file: ./backend/.env.example
+    restart: unless-stopped
+    depends_on: [postgres, redis]
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: 123vendido
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes: ["postgres_prod_data:/var/lib/postgresql/data"]
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+volumes:
+  postgres_prod_data:

@@ -1,0 +1,23 @@
+# Route Coverage
+
+- `__root.tsx`
+- `_authenticated.app.$module.$id.edit.tsx`
+- `_authenticated.app.$module.$id.tsx`
+- `_authenticated.app.$module.tsx`
+- `_authenticated.app.index.tsx`
+- `_authenticated.app.perfil.tsx`
+- `_authenticated.app.tsx`
+- `_authenticated.app.uploads.tsx`
+- `_authenticated.app.vision.tsx`
+- `_authenticated.tsx`
+- `ajuda.tsx`
+- `auth.tsx`
+- `como-funciona.tsx`
+- `contato.tsx`
+- `index.tsx`
+- `lgpd.tsx`
+- `planos.tsx`
+- `privacidade.tsx`
+- `reset-password.tsx`
+- `sobre.tsx`
+- `termos.tsx`

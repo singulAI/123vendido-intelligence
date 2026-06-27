@@ -1,0 +1,40 @@
+{
+  "status": "certified_with_mock_frontend",
+  "frontend_services_found": [],
+  "frontend_mock_contracts": [
+    "Leilao",
+    "Lote",
+    "Veiculo",
+    "Usuario",
+    "Pagamento",
+    "Assinatura",
+    "Connector",
+    "Alerta",
+    "Job",
+    "LogEvento",
+    "Relatorio"
+  ],
+  "openapi_paths": [
+    "/api/v1/architecture/decisioning",
+    "/api/v1/architecture/growth-modules",
+    "/api/v1/architecture/pipelines",
+    "/api/v1/architecture/platform-controls",
+    "/api/v1/connectors",
+    "/api/v1/connectors/{provider}/health",
+    "/api/v1/health",
+    "/api/v1/intelligence/mock-analysis",
+    "/api/v1/modules"
+  ],
+  "standard_envelope_schema": "ApiResponse",
+  "integration_rule": "Frontend must consume backend through generated client-sdk-typescript; do not duplicate interfaces.",
+  "gaps_before_real_rest_provider": [
+    "No frontend HTTP service layer exists yet; current Lovable UI consumes local mock data.",
+    "CRUD resource endpoints are not runtime-complete yet; current backend exposes architecture and diagnostic contracts only.",
+    "Auth/refresh/RBAC are foundation contracts/helpers, not public login endpoints yet."
+  ],
+  "certification": {
+    "openapi_valid": true,
+    "response_envelope_present": true,
+    "frontend_components_untouched_required": true
+  }
+}

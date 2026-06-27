@@ -1,0 +1,414 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "123Vendido Intelligence API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connectors": {
+      "get": {
+        "summary": "Connectors",
+        "operationId": "connectors_api_v1_connectors_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connectors/{provider}/health": {
+      "get": {
+        "summary": "Connector Health",
+        "operationId": "connector_health_api_v1_connectors__provider__health_get",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Provider"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/intelligence/mock-analysis": {
+      "post": {
+        "summary": "Mock Analysis",
+        "operationId": "mock_analysis_api_v1_intelligence_mock_analysis_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LotAnalysisContext"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/modules": {
+      "get": {
+        "summary": "Modules",
+        "operationId": "modules_api_v1_modules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/architecture/pipelines": {
+      "get": {
+        "summary": "Architecture Pipelines",
+        "operationId": "architecture_pipelines_api_v1_architecture_pipelines_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/architecture/platform-controls": {
+      "get": {
+        "summary": "Platform Controls",
+        "operationId": "platform_controls_api_v1_architecture_platform_controls_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/architecture/decisioning": {
+      "get": {
+        "summary": "Decisioning",
+        "operationId": "decisioning_api_v1_architecture_decisioning_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/architecture/growth-modules": {
+      "get": {
+        "summary": "Growth Modules",
+        "operationId": "growth_modules_api_v1_architecture_growth_modules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Success",
+            "default": true
+          },
+          "data": {
+            "title": "Data"
+          },
+          "meta": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Meta",
+            "default": {}
+          },
+          "errors": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Errors",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "ApiResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InformationSource": {
+        "properties": {
+          "field": {
+            "type": "string",
+            "title": "Field"
+          },
+          "origin": {
+            "type": "string",
+            "title": "Origin"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "field",
+          "origin",
+          "confidence"
+        ],
+        "title": "InformationSource"
+      },
+      "LotAnalysisContext": {
+        "properties": {
+          "structured_data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Structured Data",
+            "default": {}
+          },
+          "notice": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notice"
+          },
+          "lot": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Lot",
+            "default": {}
+          },
+          "vehicle": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vehicle"
+          },
+          "images": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Images",
+            "default": []
+          },
+          "official_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Official Url"
+          },
+          "user_observations": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "User Observations",
+            "default": {}
+          },
+          "known_information": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Known Information",
+            "default": {}
+          },
+          "history": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "History",
+            "default": []
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/InformationSource"
+            },
+            "type": "array",
+            "title": "Sources",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "LotAnalysisContext"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
